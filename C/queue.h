@@ -5,7 +5,7 @@
  |     Language:  C
  |    File Type:  .h
  |  Description:  This is an implementation of a standard FIFO queue using linked lists for C.
- |         Note:  INT_MIN is reserved for trying to get a value from an emoty queue. 
+ |         Note:  User is responsible for checking if a queue is empty before calling pop()
  *==============================================================================================*/
 
 
