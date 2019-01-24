@@ -7,66 +7,9 @@
  | 
  *==============================================================================================*/
 #include"./bst.h"
-#define TRUE 1
-#define FALSE 0
- 
- int recursive_search(struct node *tree, int key){
-     
-     //if end of tree
-     if (tree == NULL){
-         return FALSE;
-     }
-     //else if match found
-     else if (key == tree->key){
-         return TRUE;
-     }
-     //else search left half of tree
-     else if (key < tree->key){
-         int temp_level = recursive_search(tree->left, key);
-         //if match found
-         if (temp_level != FALSE){
-             return ++temp_level;
-         }
-     }
-     //else search right half of tree
-     else {
-         int temp_level = recursive_search(tree->right, key);
-         //if match found
-         if (temp_level != FALSE){
-             return ++temp_level;
-         }
-     }
 
- }
  
- //search the tree for a matching key value
- int search(struct node *tree, int key){
-     //if tree is empty
-     if (tree == NULL){
-         return FALSE;
-     }
-     //else if head of tree is a match
-     else if (tree->key == key){
-         return TRUE;
-     }
-     //else search left side using the recursive search method
-     else if (key < tree->key){
-         int temp = recursive_search(tree->left, key);
-         if (temp == FALSE)
-            return FALSE;
-         else return temp+1;
-        
-     }
-     //else search right side using the recursive search method
-     else if (key > tree->key){
-         int temp = recursive_search(tree->right, key);
-         if (temp == FALSE)
-            return FALSE;
-         else return temp+1;
-     }
-     //else match found at head of tree
-     else return TRUE;
- } 
+
 
  void search_test(struct node *tree, int key){
      int level = search(tree, key);
