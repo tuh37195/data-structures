@@ -55,6 +55,38 @@ struct node *insert(struct node *head, int key){
     
 }
 
+//remove a node from the tree with the specified key value
+int remove(struct node *tree, int key){
+        //find node with matching key: 
+
+        //if no match found
+        if (tree == NULL){
+            return FALSE;
+        }
+        //else search left
+        else if (key < tree->key){
+            return remove(tree->left, key);
+        }
+        //else search right
+        else if (key > tree->key){
+            return remove(tree->right, key);
+        }
+        //else match found, 
+        else{
+            //if match has one or no child
+
+            if (tree->left == NULL){
+            }
+            else if (tree->right == NULL){
+
+            }
+            //else two children
+            else{
+                
+            }
+        } 
+    }
+}
  /*
     Search a tree recursively. 
     This function is not ment to be called directly, use search() instead.
