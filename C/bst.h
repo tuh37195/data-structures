@@ -41,7 +41,7 @@ struct node *insert(struct node *head, int key){
     }
     
     //if key is smaller than or equal to the value of the head
-    if (key < head->key){
+    if (key <= head->key){
         head->left = insert(head->left, key);
     }
     //else key is larger than the value of the head
@@ -54,40 +54,67 @@ struct node *insert(struct node *head, int key){
     
 }
 
-//returns level of node if match is found, else returns -1
-int search(struct node *head, int key){
-    
-    //if end of tree
-    if(head == NULL){
-        return -1;
-    }
-    //if key would be found to the right of the current node
-    else if (key > head->key){
-        //check right side
-        int temp = search(head->right, key);
-        //if match is found, increment count
-        if (temp != -1){
-            return ++temp;
-        }
-        //else return -1
-        else return temp;
-    }
-    //if key would be found to the left of the current node
-    else if (key < head->key){
-        //check right side
-        int temp = search(head->left, key);
-        //if match is found, increment count
-        if (temp != -1){
-            return ++temp;
-        }
-        else return temp;
-    }
-    else if (key == head->key){
-        return 1;
-    }
-    
+ /*
+    Search a tree recursively. 
+    This function is not ment to be called directly, use search() instead.
+ */ 
+ int recursive_search(struct node *tree, int key){
+     
+     //if end of tree
+     if (tree == NULL){
+         return FALSE;
+     }
+     //else if match found
+     else if (key == tree->key){
+         return TRUE;
+     }
+     //else search left half of tree
+     else if (key < tree->key){
+         int temp_level = recursive_search(tree->left, key);
+         //if match found
+         if (temp_level != FALSE){
+             return ++temp_level;
+         }
+     }
+     //else search right half of tree
+     else {
+         int temp_level = recursive_search(tree->right, key);
+         //if match found
+         if (temp_level != FALSE){
+             return ++temp_level;
+         }
+     }
 
-}
+ }
+ 
+ //search the tree for a matching key value
+ int search(struct node *tree, int key){
+     //if tree is empty
+     if (tree == NULL){
+         return FALSE;
+     }
+     //else if head of tree is a match
+     else if (tree->key == key){
+         return TRUE;
+     }
+     //else search left side using the recursive search method
+     else if (key < tree->key){
+         int temp = recursive_search(tree->left, key);
+         if (temp == FALSE)
+            return FALSE;
+         else return temp+1;
+        
+     }
+     //else search right side using the recursive search method
+     else if (key > tree->key){
+         int temp = recursive_search(tree->right, key);
+         if (temp == FALSE)
+            return FALSE;
+         else return temp+1;
+     }
+     //else match found at head of tree
+     else return TRUE;
+ } 
 //print out the tree from left to right
 void printTree(struct node *head){
     //if end of tree
