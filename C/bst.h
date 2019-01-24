@@ -12,7 +12,8 @@
 #define BST_H
 #include<stdlib.h>
 #include<stdio.h>
-
+#define TRUE 1
+#define FALSE 0
 //the main structure of the binary search tree
 struct node{
     int key;
@@ -93,7 +94,7 @@ struct node *insert(struct node *head, int key){
      if (tree == NULL){
          return FALSE;
      }
-     //else if head of tree is a match
+         //else if head of tree is a match
      else if (tree->key == key){
          return TRUE;
      }
